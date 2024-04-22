@@ -1,0 +1,40 @@
+import pygame
+import sys
+
+# Inicializar pygame
+pygame.init()
+
+# Configuración de la ventana
+screen_width = 800
+screen_height = 600
+screen = pygame.display.set_mode((screen_width, screen_height))
+pygame.display.set_caption("Fast & Furious")
+
+# Colores
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+
+# Variables de movimiento
+x = 0
+velocity = 5
+final_velocity = 20
+
+# Bucle principal
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+
+    # Actualizar posición del círculo
+    x += velocity
+    if x >= screen_width:
+        x = 0
+        velocity += 1
+        if velocity >= final_velocity:
+            velocity = final_velocity
+
+    # Dibujar en pantalla
+    screen.fill(WHITE)
+    pygame.draw.circle(screen, BLACK, (x, screen_height // 2), 20)
+    pygame.display.flip()
